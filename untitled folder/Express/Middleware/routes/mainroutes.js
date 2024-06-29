@@ -1,0 +1,132 @@
+const router = require("express").Router() ;
+const path = require("path")
+const API_KEY_MIDDLEWARE = require("../middleware/apikey")
+router.get("/" , (request , response )=>{
+ 
+      // console.log(__dirname);
+      
+      response.render("index" , {
+        title: "Ny ejs Home Page" ,
+        content : "Welcome To My ejs Home Page " 
+      }) ;
+  
+  
+  })
+  router.get('/about' , (request , response )=>{
+   
+  
+        
+        response.render("about" , {
+          title: "Ny ejs About Page" ,
+          content : "Welcome To My ejs About Page " 
+        }) ;
+    
+    
+    })
+
+
+
+    router.get('/api/products' ,API_KEY_MIDDLEWARE, (request , response )=>{
+   
+  
+        const API_DATA = [
+          {
+            "id": 1,
+            "name": "Wireless Mouse",
+            "description": "A high-precision wireless mouse with ergonomic design.",
+            "price": 25.99,
+            "category": "Electronics",
+            "stock": 150,
+            "rating": 4.5
+          },
+          {
+            "id": 2,
+            "name": "Mechanical Keyboard",
+            "description": "A durable mechanical keyboard with customizable RGB lighting.",
+            "price": 89.99,
+            "category": "Electronics",
+            "stock": 75,
+            "rating": 4.8
+          },
+          {
+            "id": 3,
+            "name": "Bluetooth Speaker",
+            "description": "A portable Bluetooth speaker with excellent sound quality.",
+            "price": 45.50,
+            "category": "Electronics",
+            "stock": 200,
+            "rating": 4.3
+          },
+          {
+            "id": 4,
+            "name": "Fitness Tracker",
+            "description": "A sleek fitness tracker with heart rate monitoring and step counting.",
+            "price": 49.99,
+            "category": "Wearable",
+            "stock": 300,
+            "rating": 4.2
+          },
+          {
+            "id": 5,
+            "name": "Smartwatch",
+            "description": "A stylish smartwatch with various health tracking features.",
+            "price": 129.99,
+            "category": "Wearable",
+            "stock": 120,
+            "rating": 4.6
+          },
+          {
+            "id": 6,
+            "name": "Laptop Stand",
+            "description": "An adjustable laptop stand for better ergonomics.",
+            "price": 29.99,
+            "category": "Accessories",
+            "stock": 180,
+            "rating": 4.4
+          },
+          {
+            "id": 7,
+            "name": "USB-C Hub",
+            "description": "A multi-port USB-C hub with HDMI, USB, and SD card slots.",
+            "price": 39.99,
+            "category": "Accessories",
+            "stock": 250,
+            "rating": 4.7
+          },
+          {
+            "id": 8,
+            "name": "Noise-Canceling Headphones",
+            "description": "Over-ear headphones with active noise cancellation.",
+            "price": 99.99,
+            "category": "Audio",
+            "stock": 100,
+            "rating": 4.5
+          },
+          {
+            "id": 9,
+            "name": "External Hard Drive",
+            "description": "A 1TB external hard drive with fast data transfer speeds.",
+            "price": 59.99,
+            "category": "Storage",
+            "stock": 80,
+            "rating": 4.6
+          },
+          {
+            "id": 10,
+            "name": "Gaming Chair",
+            "description": "An ergonomic gaming chair with adjustable armrests and lumbar support.",
+            "price": 199.99,
+            "category": "Furniture",
+            "stock": 60,
+            "rating": 4.4
+          }
+        ]
+        
+      response.json(API_DATA) ;
+  
+  
+  })
+
+
+
+    module.exports = router ;
