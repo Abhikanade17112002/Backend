@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./Partials/head.ejs") %>
+    <title>User Profile</title>
+    <!-- Bootstrap CSS -->
+   
+    <style>
+        body {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+        .header {
+            background-color: #212529;
+        }
+        .container {
+            background-color: #343a40;
+        }
+        .form-control, .btn-primary {
+            background-color: #495057;
+            border-color: #495057;
+            color: #ffffff;
+        }
+        .btn-primary:hover {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .list-group-item {
+            background-color: #495057;
+            border: 1px solid #6c757d;
+            color: #ffffff;
+        }
+        .dropdown-menu {
+            background-color: #495057;
+            border: 1px solid #6c757d;
+        }
+        .dropdown-item {
+            color: #ffffff;
+        }
+        .dropdown-item:hover {
+            background-color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <!-- Profile Header -->
+    <header class="p-3 mb-3 border-bottom header text-white">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    
+                    <span class="ml-2">User Name</span>
+                </a>
+                <ul class="nav col-12 col-lg-auto ml-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" class="nav-link px-2 text-white">Home</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">Profile</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">Settings</a></li>
+                </ul>
+                <div class="dropdown text-end">
+                   
+                    <div class="dropdown text-end">
+                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/images/user.jpg" alt="User" width="32" height="32" class="rounded-circle">
+                        </a>
+                        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                            <li><a class="dropdown-item" href="#">New project...</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="/user/profile">Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="row">
+            <!-- Create Post Section -->
+            <div class="col-12 mb-3">
+                <h2>Create a Post</h2>
+                <form action="/user/post" method="POST">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" class="form-control" id="postTitle" placeholder="Enter post title">
+                    </div>
+                    <div class="form-group">
+                        <label for="content">Content</label>
+                        <textarea class="form-control" name="content" id="content" rows="3" placeholder="Enter post content"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+
+            <!-- User Posts Section -->
+            <div class="col-12">
+                <h2>Your Posts</h2>
+                <div class="list-group">
+                    <% currentUserPosts.posts.forEach(post => { %>
+                      <div class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1"><%= post.title %></h5>
+                          <small><%= post.date %></small>
+                        </div>
+                        <p class="mb-1"><%= post.content %></p>
+                        <small>Author: <%= currentUserPosts.user%></small>
+                      </div>
+                    <% }) %>
+                  </div>
+            </div>
+        </div>
+    </main>
+
+    <%- include("./Partials/script.ejs") %> 
+</body>
+</html>

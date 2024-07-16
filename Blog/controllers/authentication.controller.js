@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const handleUserSignIn = async (request , response )=>{
     const {  email , password} = request.body ;
     const requiredUser = await user.findOne({email:request.body.email})
-  console.log(email,password,requiredUser);
+  
     bcrypt.compare(password ,  requiredUser.password  , (error , result ) => {
         // result == true
       
