@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Page</title>
+  <style>
+    body {
+      background-color: #181818;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #61dafb;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #61dafb;
+      color: #333;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #21a1f1;
+    }
+     a{
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+     }
+    .posts .post {
+      background-color: #333;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+
+    .posts .post h3 {
+      margin: 0 0 10px 0;
+    }
+
+    .posts .post button {
+      margin-right: 10px;
+    }
+
+    .logout {
+      background-color: red;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .logout:hover {
+      background-color: darkred;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Hello, <%= currentUserPosts.username %>  👋</h1>
+    <p>you can create a new post.</p>
+    <form action="/user/post" method="POST">
+      <textarea name="content" placeholder="What's on your mind ?" required></textarea>
+      <button type="submit">Create New Post</button>
+    </form>
+    <h2>Your Posts:</h2>
+    <div class="posts">
+      <% currentUserPosts.posts.forEach(post => { %>
+        <div class="post">
+          <h3>@<%= currentUserPosts.username %></h3>
+          <p><%= post.content %></p>
+          <button>Like</button>
+          <button>Edit</button>
+        </div>
+      <% }) %>
+   
+    </div>
+    <button  class="logout"  >  <a href="/user/signout">Logout</a> </button>
+  </div>
+</body>
+</html>

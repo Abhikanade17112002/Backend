@@ -1,0 +1,50 @@
+<!-- signout.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Out</title>
+  <!-- Include Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Custom dark mode styles -->
+  <style>
+    body {
+      background-color: #1a202c; /* Dark background color */
+      color: #cbd5e0; /* Light text color */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .container {
+      background-color: #2d3748; /* Darker background color for container */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .link {
+      color: #38b2ac;
+    }
+    .link:hover {
+      text-decoration: underline;
+    }
+    .button {
+      background-color: #38b2ac;
+      color: #fff;
+    }
+    .button:hover {
+      background-color: #319795;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sign-out Message -->
+  <div class="min-h-screen flex items-center justify-center">
+    <div class="max-w-md w-full p-8 rounded-md container text-center">
+      <h2 class="text-2xl font-bold mb-4 text-white">You have signed out</h2>
+      <p class="mb-6 text-lg text-white">Thank you for using our service. You have successfully signed out.</p>
+      <div class="space-y-4">
+        <a href="/" class="link text-lg block">Go to Home</a>
+        <a href="/signin" class="button py-2 px-4 rounded-md inline-block">Sign In Again</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

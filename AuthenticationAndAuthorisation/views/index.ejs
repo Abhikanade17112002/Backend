@@ -1,0 +1,87 @@
+<!-- index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <!-- Include Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Custom dark mode styles -->
+  <style>
+    body {
+      background-color: #1a202c; /* Dark background color */
+      color: #cbd5e0; /* Light text color */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .header {
+      background-color: #2d3748; /* Darker background color for header */
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10; /* Ensure header is above other content */
+    }
+    .nav-link {
+      color: #cbd5e0;
+    }
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+    .hero {
+      background-image: url('https://example.com/your-hero-image.jpg'); /* Replace with your actual hero image URL */
+      background-size: cover;
+      background-position: center;
+      height: 60vh; /* Adjust the height of the hero section */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-top: 64px; /* Ensure hero section is below fixed header */
+    }
+    .footer {
+      background-color: #2d3748; /* Darker background color for footer */
+      color: #cbd5e0;
+      text-align: center;
+      padding: 2rem 0;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header py-4">
+    <div class="container mx-auto flex justify-between items-center px-4">
+      <h1 class="text-white text-xl font-bold">Your App Name</h1>
+      <nav>
+        <ul class="flex space-x-4">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/user/signin" class="nav-link">Sign In</a></li>
+          <li><a href="/user/signup" class="nav-link">Sign Up</a></li>
+          <li><a href="/user/signout" class="nav-link">Sign Out</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold text-white mb-4">Welcome to Your App</h2>
+      <p class="text-lg text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container mx-auto">
+      <p>&copy; 2024 Your App. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
