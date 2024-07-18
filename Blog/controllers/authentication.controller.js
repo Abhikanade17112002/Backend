@@ -22,7 +22,8 @@ const handleUserSignIn = async (request , response )=>{
 const handleUserSignUp =  (request , response )=>{
     const { firstname , lastname , username , email , password} = request.body ;
    
-
+    //   console.log(request.file,"HIII");
+      const imgPath = `/userprofile/${request.file.filename}` ;
     bcrypt.genSalt(10, function(err, salt) {
         bcrypt.hash(password, salt, async (err, hash) =>{
             const newCreatedUser = await user.create({
@@ -30,10 +31,9 @@ const handleUserSignUp =  (request , response )=>{
                 lastname,
                 username,
                 email,
+                userProfileImage:imgPath ,
                 password: hash
             })
-
-            console.log(newCreatedUser);
 
             const  token = jwt.sign({ email: email , user_id:newCreatedUser._id }, process.env.JWTSECERET);
             response.cookie("token",token);
@@ -43,10 +43,15 @@ const handleUserSignUp =  (request , response )=>{
    
 }
 
+const handleUserSignOut = (request , response )=>{
+    response.clearCookie("token");
+    response.status(200).redirect("/") ;
+    }
 
 
 module.exports = {
     handleUserSignIn , 
-    handleUserSignUp 
+    handleUserSignUp ,
+    handleUserSignOut 
 
 }

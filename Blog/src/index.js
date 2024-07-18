@@ -1,11 +1,14 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
+const post = require("../models/post.model.js")
 const cookieParser = require("cookie-parser");
 const connectToMongoDB = require("../database/blog.database.js");
 const { authenticationRouter } = require("../routes/authentication.route");
 const { userRouter } = require("../routes/user.route");
 const handleIsUserLoggedIn = require("../middlewares/userAuthentication.middleware.js");
+
+
 
 // App
 const App = express();
@@ -19,8 +22,28 @@ App.use(express.urlencoded({ extended: true }));
 App.use(express.json());
 App.use(cookieParser());
 
-App.get("/", (request, response) => {
-  response.render("index.ejs");
+
+
+App.get("/", async (request, response) => {
+  const userToken = request.cookies.token  ;
+  const allPosts = await post.find({}).populate("createdBy") ;
+
+  
+  console.log(allPosts);
+  response.render("index.ejs",{
+    "token":userToken
+    ,
+    allPosts
+  });
+});
+App.get("/post:id", async (request, response) => {
+  const postId = request.params.id.slice(1);
+const requiredPost = await post.findById(postId).populate("createdBy");
+  response.render("../views/comment.ejs",{
+    id:request.params.id,
+    "token":request.cookies.token,
+    post:requiredPost
+  })
 });
 App.use(authenticationRouter);
 App.use("/user", handleIsUserLoggedIn, userRouter);

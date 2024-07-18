@@ -1,0 +1,80 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: "JetBrains Mono", monospace;
+  
+   
+  }
+  html,body{
+    min-width: 100vw;
+    min-height: 100vh;
+  }
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(61, 58, 58);
+}
+::placeholder{
+    color:white;
+    font-family: "JetBrains Mono", monospace;
+}
+
+.form-container{
+ display: flex;
+ flex-direction: column;
+ justify-content: space-evenly;
+ min-width: 30vw;
+ max-width: 35vw;
+ min-height: 60vh;
+ padding: 2rem 1rem;
+ background-color: antiquewhite;
+ gap: 1rem;
+}
+.form-container input{
+   
+    padding: 0.75rem 0.5rem;
+    background-color: rgb(0, 0, 0);
+    color: white;
+   }
+
+   .form-buttons{
+    display: flex;
+    justify-content:center ;
+    align-items: center;
+   }
+
+.form-buttons button{
+    padding: 0.75rem 0.5rem;
+min-width: 60%;
+border-radius: 1rem;
+
+   }
+
+.form-buttons button:hover{
+background-color: dodgerblue;
+cursor: pointer;
+
+   }
+.input-field{
+    display: flex;
+    flex-direction: column;
+}
+span{
+    color: red;
+    font-size: 0.8rem;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 600;
+    display: none;
+}
+
+input:invalid[focused="true"]  {
+    border: 1px solid red;
+}
+input:invalid[focused="true"]  ~ span{
+    display: block;
+}
+
+
+

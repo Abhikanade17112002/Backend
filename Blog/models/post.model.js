@@ -6,6 +6,11 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    username:{
+      type: String,
+      required: true,
+      default:"guestuser@123"
+    },
 
     content: {
       type: String,
@@ -16,10 +21,17 @@ const postSchema = new mongoose.Schema(
       ref: "user",
     },
 
-    // img: {
-    //   type: String,
-    //   default: "./images/user.jpg",
-    // },
+    userPostImage: {
+      type: String,
+      required: true,
+      default: "./images/user.jpg",
+    
+      
+    },
+    postCreatedTime:{
+      type: String,
+      required : true  
+    },
     likes: [
       {
         type: mongoose.Schema.Types.ObjectId,

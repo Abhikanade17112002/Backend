@@ -40,12 +40,11 @@
 </head>
 <body>
     <!-- Navbar -->
-    <%- include("./Partials/navbar.ejs") %> 
-
+    <%-include("./Partials/navbar.ejs") %>
     <!-- Main Content -->
     <main class="container main-content">
         <h1>Sign Up for Blogify</h1>
-        <form action="/signup" method="POST">
+        <form action="/signup" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">

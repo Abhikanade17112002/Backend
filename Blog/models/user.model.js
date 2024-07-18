@@ -23,9 +23,9 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    img: {
+    userProfileImage: {
       type: String,
-      default: "./images/user.jpg",
+      required:true ,
     },
     posts: [
       {
