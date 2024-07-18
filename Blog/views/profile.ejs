@@ -76,8 +76,10 @@
                       
                         
                         <div class="card post-card  text-light border-0 shadow" >
+                            <div class="post-card-img">
+                                <img class="user-post-card-img" src=<%=post.userPostImage%> alt="Card image cap"   >
+                            </div>
                         
-                            <img class="user-post-card-img" src=<%=post.userPostImage%> alt="Card image cap"   style="max-height: 350px;" >
                             <div class="post-card-body">
                                 <h4 class="card-title"><%=post.title%></h4>
                                 <p class="card-content"><%=post.content %></p>
@@ -97,12 +99,14 @@
                                 </div>
                                 <div class="user-info">
                                     <div class="post-comment-btn">
+                                        <a href="/post:<%=post._id%>">
+                                          
+                                         
                                         <button  class="btn btn-sm btn-secondary">
-                                            <a href="/post:<%=post._id%>">
-                                               View
-                                            </a>
-                                           
+                                            
+                                           Veiw
                                         </button>
+                                    </a>
                                     </div>
                                     
                                     <div class="username">

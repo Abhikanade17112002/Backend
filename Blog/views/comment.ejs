@@ -12,7 +12,7 @@
 
 
 
- 
+    <%-include("./Partials/navbar.ejs") %>
     
        <div class=" post-comment-container">
       
@@ -35,43 +35,38 @@
             </div>
             <div class="post-comments">
                 
-                    comments
+                    comments <%= postComments.length %>
                 
             </div>
         </div>
         <div class="post-comments-container">
             <div class="post-comments-heading">
-                <h5>Comments</h5>
+                <h5>Comments <%= postComments.length  %></h5>
+                
             </div>
            <div class="post-comments-sections">
-          
-               <div class="post-comment">
-                 <div class="post-comment-user">
-                    user 1
-                 </div>
-                 <div class="post-comment-content">
-                    comment made 1
-                 </div>
-               </div>
-               <div class="post-comment">
-                 <div class="post-comment-user">
-                    user 2 
-                 </div>
-                 <div class="post-comment-content">
-                    comment made 2
-                 </div>
-               </div>
- 
+           
+           <% postComments.forEach(postComment => { %>
+                <div class="post-comment">
+                    <div class="post-comment-user">
+                    @<%= postComment.createdBy.username  %>
+                    </div>
+                    <div class="post-comment-content">
+                        <%= postComment.content  %>
+                    </div>
+                  </div>
+                  <% }) %>
+            
            </div>
         </div>
         
     <% if( locals.token){ %>
         <div class="post-comment-form">
 
-            <form action="" class="comment-form">
+            <form action="/user/comment:<%=post._id %>"  method="POST"  class="comment-form">
              <div class="form-input">
              
-             <textarea name="post-comment" id="post-comment-input" class="post-comment-input" placeholder="Make A "></textarea>
+             <textarea name="postcomment" id="post-comment-input" class="post-comment-input" placeholder="Make A "></textarea>
              </div>
              <div class="form-button">
                  <button type="submit">Post Comment</button>

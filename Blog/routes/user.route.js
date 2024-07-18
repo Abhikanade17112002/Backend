@@ -1,6 +1,7 @@
 const userRouter = require("express").Router();
 const user = require("../models/user.model.js");
 const post = require("../models/post.model")
+const comment = require("../models/comment.model.js") ;
 const multer  = require('multer')
 
 const {
@@ -22,19 +23,33 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
+userRouter.post("/comment:post_id", async (request , response )=>{
+     const post_id = request.params.post_id.slice(1) ;
+     const userComment = request.body.postcomment ;
+     const user_id = request.currentUser._id;
 
+     const newCreatedComment = await comment.create({
+      createdBy:user_id,
+      createdFor:post_id ,
+      content:userComment ,
+     }) ;
+     
+     await post.findOneAndUpdate({
+      _id:post_id
+     },{
+      $push:{
+        comments:newCreatedComment._id
+        }
+     })
 
+     response.redirect(`/post:${post_id}`);
+}) ;
 
 userRouter.get("/profile", async (request, respone) => {
   const currentLoggedInUser = request.currentUser ;
   const currentUserPosts = await user.findOne({_id:currentLoggedInUser._id}).populate("posts")
   
-    // respone.json(currentUserPosts.posts)
-    
- for( let i = 0 ; i < currentUserPosts.posts.length ; i++ )
- {
-  console.log(currentUserPosts.posts[i].userPostImage);
- }
+
   respone.render("../views/profile.ejs",{
     currentUserPosts:{
       posts:currentUserPosts.posts ,
@@ -69,6 +84,8 @@ userRouter.get("/like",async (request , response )=>{
     }
   
 })
+
+
 module.exports = {
   userRouter,
 };

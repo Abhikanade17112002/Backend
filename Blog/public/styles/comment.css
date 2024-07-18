@@ -15,6 +15,7 @@ body{
    padding: 3rem 1.5rem;
     min-height: 100vh;
     min-width: 100vw;
+    padding-top: 0px;
 }
 .post-comment-container{
     background-color: #495057;
@@ -141,4 +142,5 @@ body{
     background-color: rgba(100, 148, 237, 0.536);
 
 }
+
 

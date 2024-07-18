@@ -4,9 +4,10 @@ const path = require("path");
 const post = require("../models/post.model.js")
 const cookieParser = require("cookie-parser");
 const connectToMongoDB = require("../database/blog.database.js");
-const { authenticationRouter } = require("../routes/authentication.route");
-const { userRouter } = require("../routes/user.route");
+const { authenticationRouter } = require("../routes/authentication.route.js");
+const { userRouter } = require("../routes/user.route.js");
 const handleIsUserLoggedIn = require("../middlewares/userAuthentication.middleware.js");
+const comment = require("../models/comment.model.js");
 
 
 
@@ -39,10 +40,13 @@ App.get("/", async (request, response) => {
 App.get("/post:id", async (request, response) => {
   const postId = request.params.id.slice(1);
 const requiredPost = await post.findById(postId).populate("createdBy");
+const postComments = await comment.find({createdFor:postId}).populate("createdBy") ;
+console.log(postComments);
   response.render("../views/comment.ejs",{
     id:request.params.id,
     "token":request.cookies.token,
-    post:requiredPost
+    post:requiredPost,
+    postComments
   })
 });
 App.use(authenticationRouter);
